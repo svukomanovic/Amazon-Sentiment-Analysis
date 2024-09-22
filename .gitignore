@@ -3,3 +3,4 @@
 *.jsonl
 *.csv
 .ipynb_checkpoints/month-by-month-analysis-checkpoint.ipynb
+/.ipynb_checkpoints
