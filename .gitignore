@@ -2,3 +2,4 @@
 .ipynb_checkpoints/README-checkpoint.md
 *.jsonl
 *.csv
+.ipynb_checkpoints/month-by-month-analysis-checkpoint.ipynb
