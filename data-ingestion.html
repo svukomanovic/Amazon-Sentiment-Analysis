@@ -7476,13 +7476,13 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7badcaf4-f6f8-492b-8744-3ca70e0d5973">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=472373ca-211c-44be-b100-b353ebb6460e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Step-1-load-review-data">Step 1 load review data<a class="anchor-link" href="#Step-1-load-review-data">¶</a></h3>
+<h3 id="(Windows)-Step-1:-load-review-data">(Windows) Step 1: load review data<a class="anchor-link" href="#(Windows)-Step-1:-load-review-data">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7546,13 +7546,76 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e58429e-f984-41b2-8179-b9e336f85cca">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4993785b-b2cc-466c-92e4-144f2430de4c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Step-2-load-Metadata">Step 2 load Metadata<a class="anchor-link" href="#Step-2-load-Metadata">¶</a></h3>
+<h3 id="(Mac)-Step-1:-load-review-data">(Mac) Step 1: load review data<a class="anchor-link" href="#(Mac)-Step-1:-load-review-data">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=369a854b-a864-4672-9ff6-d1cf2ea8626e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Mac cannot open tkinter so option for MAC is to hardcode the path</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span><span class="p">,</span> <span class="n">messagebox</span>
+
+<span class="c1"># Step 1: Load the Appliances reviews file</span>
+<span class="n">reviews_file</span> <span class="o">=</span> <span class="s2">"Appliances.jsonl"</span>
+
+<span class="n">reviews_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">reviews_file</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="n">reviews_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">'rating'</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'rating'</span><span class="p">),</span>
+            <span class="s1">'text'</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'text'</span><span class="p">),</span>
+            <span class="s1">'asin'</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'asin'</span><span class="p">),</span>
+            <span class="s1">'timestamp'</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'timestamp'</span><span class="p">),</span>
+            <span class="s1">'parent_asin'</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'parent_asin'</span><span class="p">)</span>
+        <span class="p">})</span>
+
+<span class="c1"># Convert the reviews list into a DataFrame</span>
+<span class="n">reviews_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">reviews_list</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Finished Review Dataframe"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Finished Review Dataframe
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7d6e402a-5e21-4065-848f-17523f8a9de0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="(Windows)-Step-2:-load-Metadata">(Windows) Step 2: load Metadata<a class="anchor-link" href="#(Windows)-Step-2:-load-Metadata">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7561,7 +7624,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -7611,6 +7674,65 @@ a.anchor-link {
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cf9005a5-c8e7-4b8c-9766-bfade4a7d735">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="(Mac)-Step-2:-Load-Metadata">(Mac) Step 2: Load Metadata<a class="anchor-link" href="#(Mac)-Step-2:-Load-Metadata">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a012964f-f39e-419a-a87e-4eb828260a2f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span><span class="p">,</span> <span class="n">messagebox</span>
+
+<span class="c1"># Step 2: Load the meta_Pet_Supplies file</span>
+<span class="n">meta_file</span> <span class="o">=</span> <span class="s2">"meta_Appliances.jsonl"</span>
+
+<span class="n">meta_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">meta_file</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="n">meta_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">'parent_asin'</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'parent_asin'</span><span class="p">),</span>
+            <span class="s1">'title'</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'title'</span><span class="p">),</span>
+            <span class="s1">'main_category'</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'main_category'</span><span class="p">)</span>
+        <span class="p">})</span>
+
+<span class="c1"># Convert the metadata list into a DataFrame</span>
+<span class="n">meta_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">meta_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Finished Meta Dataframe"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Finished Meta Dataframe
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8acdef3c-b836-4f82-9375-aea5b88460ed">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7626,7 +7748,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Step 3: Save the combined DataFrame as a CSV file</span>
@@ -7666,7 +7788,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -7689,24 +7811,24 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>   rating                                               text        date
-0     4.0  Tried to load photos, but none of my photos or...  02-04-2023
-1     2.0  I have a 14 pound schnoodle and the stairs are...  06-10-2020
-2     5.0  Dog uses the crap our of this and he loves bei...  04-15-2017
-3     5.0                                  My dog loves this  08-08-2021
-4     3.0  The stairs came with no carpet, skid pads, on ...  10-13-2019
+0     5.0              work great. use a new one every month  02-22-2018
+1     5.0  Have only used 2 but so far no issues. Fits as...  06-20-2018
+2     5.0          Arrived quickly, They work as they should  11-10-2018
+3     5.0                                       Great value!  05-31-2021
+4     5.0  Really keeps water fresh and keeps weird water...  12-05-2019
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fcd0aa01-f67e-41e5-a195-a650cf6a1a6f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9f4256fc-ac9b-4ea0-842a-43f467b1d772">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Step-5-Extract-year-2022">Step 5 Extract year 2022<a class="anchor-link" href="#Step-5-Extract-year-2022">¶</a></h3>
+<h3 id="(Windows)-Step-5:-Extract-year-2022">(Windows) Step 5: Extract year 2022<a class="anchor-link" href="#(Windows)-Step-5:-Extract-year-2022">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7715,14 +7837,12 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
 <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span><span class="p">,</span> <span class="n">messagebox</span>
 
-<span class="n">file</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
-<span class="n">file</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span>
 <span class="c1">#Ref to save CSV file https://www.geeksforgeeks.org/python-asksaveasfile-function-in-tkinter/</span>
 <span class="n">save_file_path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">asksaveasfilename</span><span class="p">(</span>
     <span class="n">title</span><span class="o">=</span><span class="s2">"Save CSV file"</span><span class="p">,</span>
@@ -7732,8 +7852,35 @@ a.anchor-link {
 
 <span class="n">combined_df_2022</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2022</span><span class="p">]</span>
 <span class="n">combined_df_2022</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_file_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e102916f-98f4-49cc-885c-b46d70944077">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="(Mac)-Step-5:-Extract-year-2022">(Mac) Step 5: Extract year 2022<a class="anchor-link" href="#(Mac)-Step-5:-Extract-year-2022">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=02300584-047f-4d48-a820-cddf7d0e2f62">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span><span class="p">,</span> <span class="n">messagebox</span>
 
-<span class="n">file</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+<span class="n">combined_df_2022</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2022</span><span class="p">]</span>
+<span class="n">combined_df_2022</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'appliances_2022.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7744,7 +7891,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">combined_df_2022</span>
@@ -7758,7 +7905,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -7790,59 +7937,59 @@ a.anchor-link {
 </thead>
 <tbody>
 <tr>
-<th>11</th>
-<td>4.0</td>
-<td>I needed a pair of doggy steps for my car that...</td>
-<td>B084SV3JR4</td>
-<td>2022-02-02 17:04:47.667</td>
-<td>B0BHTBS5RM</td>
-<td>PetSafe CozyUp Folding Dog Stairs - Pet Stairs...</td>
-<td>Pet Supplies</td>
-<td>02-02-2022</td>
-</tr>
-<tr>
-<th>19</th>
+<th>12</th>
 <td>5.0</td>
-<td></td>
-<td>B084SXF9Y8</td>
-<td>2022-07-28 05:30:26.891</td>
-<td>B0BHTBS5RM</td>
-<td>PetSafe CozyUp Folding Dog Stairs - Pet Stairs...</td>
-<td>Pet Supplies</td>
-<td>07-28-2022</td>
+<td>These work great on our Mr. Coffee carafe mach...</td>
+<td>B01N0TQ0OH</td>
+<td>2022-09-18 19:17:30.867</td>
+<td>B01N0TQ0OH</td>
+<td>Geesta 12-Pack Premium Activated Charcoal Wate...</td>
+<td>Tools &amp; Home Improvement</td>
+<td>09-18-2022</td>
 </tr>
 <tr>
-<th>25</th>
-<td>3.0</td>
-<td>The pads fell off quickly so I hot glued each ...</td>
-<td>B084SXF9Y8</td>
-<td>2022-09-20 03:53:21.141</td>
-<td>B0BHTBS5RM</td>
-<td>PetSafe CozyUp Folding Dog Stairs - Pet Stairs...</td>
-<td>Pet Supplies</td>
-<td>09-20-2022</td>
+<th>40</th>
+<td>5.0</td>
+<td>Easy to set up and the radio station I listen ...</td>
+<td>B01N0TQ0OH</td>
+<td>2022-12-03 23:53:23.244</td>
+<td>B01N0TQ0OH</td>
+<td>Geesta 12-Pack Premium Activated Charcoal Wate...</td>
+<td>Tools &amp; Home Improvement</td>
+<td>12-03-2022</td>
 </tr>
 <tr>
-<th>29</th>
-<td>4.0</td>
-<td>The pads do not stick. You need to glue them d...</td>
-<td>B084SXF9Y8</td>
-<td>2022-01-01 04:46:45.735</td>
-<td>B0BHTBS5RM</td>
-<td>PetSafe CozyUp Folding Dog Stairs - Pet Stairs...</td>
-<td>Pet Supplies</td>
-<td>01-01-2022</td>
+<th>41</th>
+<td>5.0</td>
+<td>I use filter water for my coffee. Once you put...</td>
+<td>B01N0TQ0OH</td>
+<td>2022-03-26 23:16:48.578</td>
+<td>B01N0TQ0OH</td>
+<td>Geesta 12-Pack Premium Activated Charcoal Wate...</td>
+<td>Tools &amp; Home Improvement</td>
+<td>03-26-2022</td>
 </tr>
 <tr>
-<th>36</th>
-<td>1.0</td>
-<td>Would return it if I wasn’t crippled!</td>
-<td>B084SXF9Y8</td>
-<td>2022-06-08 20:43:58.907</td>
-<td>B0BHTBS5RM</td>
-<td>PetSafe CozyUp Folding Dog Stairs - Pet Stairs...</td>
-<td>Pet Supplies</td>
-<td>06-08-2022</td>
+<th>44</th>
+<td>5.0</td>
+<td>Works well since I do have hard water. So the ...</td>
+<td>B01N0TQ0OH</td>
+<td>2022-02-19 19:53:23.081</td>
+<td>B01N0TQ0OH</td>
+<td>Geesta 12-Pack Premium Activated Charcoal Wate...</td>
+<td>Tools &amp; Home Improvement</td>
+<td>02-19-2022</td>
+</tr>
+<tr>
+<th>53</th>
+<td>5.0</td>
+<td>I like them very much you change it once a mon...</td>
+<td>B01N0TQ0OH</td>
+<td>2022-02-19 20:30:11.350</td>
+<td>B01N0TQ0OH</td>
+<td>Geesta 12-Pack Premium Activated Charcoal Wate...</td>
+<td>Tools &amp; Home Improvement</td>
+<td>02-19-2022</td>
 </tr>
 <tr>
 <th>...</th>
@@ -7856,63 +8003,63 @@ a.anchor-link {
 <td>...</td>
 </tr>
 <tr>
-<th>16827827</th>
+<th>2128559</th>
 <td>1.0</td>
-<td>Does not look like the one in the picture. Ret...</td>
-<td>B09BL49GYZ</td>
-<td>2022-04-03 06:31:21.313</td>
-<td>B09BL49GYZ</td>
-<td>DEYUCHANG Bubble Backpack Pet The Extended Spa...</td>
+<td>The fan stop working after 2weeks</td>
+<td>B09H6VKXQG</td>
+<td>2022-03-10 15:26:59.774</td>
+<td>B09H6VKXQG</td>
+<td>242077702, FDQC18EL4F, 242077705 Evaporator Fa...</td>
+<td>Tools &amp; Home Improvement</td>
+<td>03-10-2022</td>
+</tr>
+<tr>
+<th>2128560</th>
+<td>1.0</td>
+<td>The fan stop working after 2weeks</td>
+<td>B09H6VKXQG</td>
+<td>2022-03-10 15:26:59.774</td>
+<td>B09H6VKXQG</td>
+<td>242077702, FDQC18EL4F, 242077705 Evaporator Fa...</td>
+<td>Tools &amp; Home Improvement</td>
+<td>03-10-2022</td>
+</tr>
+<tr>
+<th>2128569</th>
+<td>1.0</td>
+<td>This is the THIRD product I tried to order ins...</td>
+<td>B09QHKL7R7</td>
+<td>2022-10-10 22:56:44.073</td>
+<td>B09QHKL7R7</td>
+<td>Reusable Vertuo Capsules Pods, Refillable Vert...</td>
 <td>None</td>
-<td>04-03-2022</td>
+<td>10-10-2022</td>
 </tr>
 <tr>
-<th>16827828</th>
-<td>1.0</td>
-<td>Tried the product first time worked ok. The 2n...</td>
-<td>B09Y1TQMMY</td>
-<td>2022-07-19 00:33:39.584</td>
-<td>B09Y1TQMMY</td>
-<td>ZZAINIO Wireless Dog Fence, Waterproof &amp; Recha...</td>
-<td>Pet Supplies</td>
-<td>07-19-2022</td>
-</tr>
-<tr>
-<th>16827841</th>
-<td>1.0</td>
-<td>Ordered what I thought was 2000 bags and recei...</td>
-<td>B01LWKWPKQ</td>
-<td>2022-07-18 12:43:48.687</td>
-<td>B0CDQH7KY9</td>
-<td>The Original Poop Bags® 2,000 Black Count Comm...</td>
-<td>Pet Supplies</td>
-<td>07-18-2022</td>
-</tr>
-<tr>
-<th>16827851</th>
+<th>2128595</th>
 <td>5.0</td>
-<td></td>
-<td>B09P11VTYK</td>
-<td>2022-07-27 02:33:25.228</td>
-<td>B09P11VTYK</td>
-<td>Hooyeatlin Large Elevated Dog Bed with Canopy ...</td>
-<td>Pet Supplies</td>
-<td>07-27-2022</td>
+<td>Was a perfect replacement at a good low cost.</td>
+<td>B082K713YG</td>
+<td>2022-10-24 18:43:22.403</td>
+<td>B082K713YG</td>
+<td>ForeverPRO WB02K10182 Leg Leveler for GE Range...</td>
+<td>Tools &amp; Home Improvement</td>
+<td>10-24-2022</td>
 </tr>
 <tr>
-<th>16827853</th>
+<th>2128598</th>
 <td>1.0</td>
-<td>I LOVED the charms. I put it on my chain 2 day...</td>
-<td>B08B441X9D</td>
-<td>2022-09-02 18:02:01.803</td>
-<td>B08B441X9D</td>
-<td>2 Faith Charm with Cross Dog Tag Gold by TIJC ...</td>
-<td>None</td>
-<td>09-02-2022</td>
+<td>The highlighted dishwasher rack rusted within ...</td>
+<td>B09B3GWHW9</td>
+<td>2022-07-23 15:07:20.091</td>
+<td>B09B3GWHW9</td>
+<td>W10161215 Lower Rack &amp; wheels Fits for Whirlpo...</td>
+<td>Tools &amp; Home Improvement</td>
+<td>07-23-2022</td>
 </tr>
 </tbody>
 </table>
-<p>2374142 rows × 8 columns</p>
+<p>299487 rows × 8 columns</p>
 </div>
 </div>
 </div>
